@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<algorithm>
 using namespace std;
 // Without using STL
 void rotate(int a[][1000], int n) {
@@ -26,7 +26,18 @@ void rotate(int a[][1000], int n) {
 
 // Using STL
 void rotate_stl(int a[][1000], int n) {
-	
+ 	for(int i=0; i<n; i++) {
+		reverse(a[i], a[i]+n);
+	}
+
+	// Do the transpose
+	for(int i=0; i<n; i++) {
+		for(int j=0; j<n; j++) {
+			if(i<j) {
+				swap(a[i][j], a[j][i]);
+			}
+		}
+	}
 }
 
 // Display matrix
@@ -52,6 +63,7 @@ int main() {
 	}
 	rotate(a, n);
 	display(a, n);
-
+	// rotate_stl(a, n);
+	// display(a, n);
 	return 0;
 }
